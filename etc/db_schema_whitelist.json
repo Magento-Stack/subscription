@@ -1,0 +1,106 @@
+{
+    "pixafy_subscription": {
+        "column": {
+            "subscription_id": true,
+            "customer_id": true,
+            "increment_id": true,
+            "name": true,
+            "bpc_num": true,
+            "bpc_name": true,
+            "date_created": true,
+            "enable": true,
+            "schedule_id": true,
+            "subscription_interval_type": true,
+            "subscription_interval_number": true,
+            "subscription_interval_label": true,
+            "ponumber": true,
+            "unique_id": true,
+            "next_ship_date": true,
+            "notes": true,
+            "total_cost": true,
+            "disable_confirmation": true,
+            "x3_order_rebuild_flag": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "pixafy_subscription_item": {
+        "column": {
+            "id": true,
+            "subscription_id": true,
+            "itmref": true,
+            "pri": true,
+            "minqty": true,
+            "maxqty": true,
+            "itmdesc": true,
+            "qty": true,
+            "ship_site": true,
+            "itmstd": true,
+            "tsicod": true,
+            "product_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_6C9DE859B6317D99442C8C5D9EFDDF1F": true
+        }
+    },
+    "pixafy_subscription_staging": {
+        "column": {
+            "subscription_staging_id": true,
+            "subscription_id": true,
+            "date_created": true,
+            "date_scheduled": true,
+            "is_approved": true,
+            "is_executed": true,
+            "user_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_EE4D61A6ACD12377EED63544C45A20D5": true
+        }
+    },
+    "pixafy_subscription_staging_details": {
+        "column": {
+            "subscription_staging_details_id": true,
+            "subscription_staging_id": true,
+            "field_name": true,
+            "old_value": true,
+            "new_value": true,
+            "notes": true,
+            "product_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_53AC247E4ED3330E7BED8F3E9949BDCA": true
+        }
+    },
+    "pixafy_subscription_order_schedule": {
+        "column": {
+            "schedule_id": true,
+            "subscription_id": true,
+            "is_valid": true,
+            "is_posted": true,
+            "expected_delivery_date": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_E986FB2B968C06135E0828D1F9FFDEDE": true
+        }
+    },
+    "quote": {
+        "column": {
+            "subscription_interval_type": true,
+            "subscription_interval_number": true,
+            "subscription_interval_label": true,
+            "notes": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "notes": true
+        }
+    }
+}

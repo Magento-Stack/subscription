@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Pixafy_Subscription extension
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category  Pixafy
+ * @package   Pixafy_Subscription
+ * @copyright Copyright (c) 2022
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+         <job name="subscription_staging" instance="Pixafy\Subscription\Cron\SubscriptionStaging\SubscriptionStagingCron" method="execute">
+            <config_path>crontab/default/jobs/pixafy_subscription_modification/schedule/cron_expr</config_path>
+        </job>
+
+        <job name="post-creation" instance="Pixafy\Subscription\Cron\PixafySubscription\PostCreationCron" method="execute">
+            <config_path>
+                crontab/default/jobs/pixafy_subscription_x3Visibility/schedule/cron_expr
+            </config_path>
+        </job>
+    </group>
+</config>

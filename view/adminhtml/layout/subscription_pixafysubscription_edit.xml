@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="left">
+            <block class="Pixafy\Subscription\Block\Adminhtml\Subscription\Tabs" name="pixafy_subscription.edit.tabs">
+                <block class="Pixafy\Subscription\Block\Adminhtml\Subscription\Tab\Subscription" name="subscription.grid.container"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">subscription</argument>
+                    <argument name="block" xsi:type="string">subscription.grid.container</argument>
+                </action>
+
+                <block class="Pixafy\Subscription\Block\Adminhtml\SubscriptionItem\Tab\SubscriptionItem" name="sales_order_invoice.grid.container"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">subscription_item</argument>
+                    <argument name="block" xsi:type="string">sales_order_invoice.grid.container</argument>
+                </action>
+
+                <block class="Pixafy\Subscription\Block\Adminhtml\OrderSchedule\Tab\OrderSchedule" name="order_schedule.grid.container"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">order_schedule</argument>
+                    <argument name="block" xsi:type="string">order_schedule.grid.container</argument>
+                </action>
+
+                <block class="Pixafy\Subscription\Block\Adminhtml\SubscriptionUpdates\Tab\SubscriptionUpdates" name="subscription_updates.grid.container"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">subscription_updates</argument>
+                    <argument name="block" xsi:type="string">subscription_updates.grid.container</argument>
+                </action>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <container name="div.tabs.content" as="tabs-content" htmlTag="div" htmlClass="tabs-content" after="div.order.information">
+                <block class="Pixafy\Subscription\Block\Adminhtml\Subscription\Edit" name="pixafy.subscription.edit"/>
+            </container>
+        </referenceContainer>
+
+        <referenceBlock name="subscription.grid.container">
+            <uiComponent name="subscription_form"/>
+        </referenceBlock>
+        <referenceBlock name="sales_order_invoice.grid.container">
+            <uiComponent name="subscription_item_listing"/>
+        </referenceBlock>
+        <referenceBlock name="order_schedule.grid.container">
+            <uiComponent name="order_schedule_listing"/>
+        </referenceBlock>
+        <referenceBlock name="subscription_updates.grid.container">
+            <uiComponent name="subscription_update_listing"/>
+        </referenceBlock>
+    </body>
+</page>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <!--     Data source prepared for general subscription-->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="pixafy_subscription_listing_data_source" xsi:type="string">Pixafy\Subscription\Model\ResourceModel\Subscription\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Pixafy\Subscription\Model\ResourceModel\Subscription\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">pixafy_subscription</argument>
+            <argument name="resourceModel" xsi:type="string">Pixafy\Subscription\Model\ResourceModel\Subscription</argument>
+        </arguments>
+    </virtualType>
+    <!--   End  Data source prepared for general subscription-->
+
+    <!--     Data source prepared for general subscription-->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="pixafy_subscription_items_listing_data_source" xsi:type="string">Pixafy\Subscription\Model\ResourceModel\SubscriptionItem\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Pixafy\Subscription\Model\ResourceModel\SubscriptionItem\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">pixafy_subscription_item</argument>
+            <argument name="resourceModel" xsi:type="string">Pixafy\Subscription\Model\ResourceModel\SubscriptionItem</argument>
+        </arguments>
+    </virtualType>
+    <!--   End  Data source prepared for general subscription-->
+
+    <!--     Data source prepared for order schedule grid-->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="pixafy_order_schedule_listing_data_source" xsi:type="string">Pixafy\Subscription\Model\ResourceModel\SubscriptionOrderSchedule\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Pixafy\Subscription\Model\ResourceModel\SubscriptionOrderSchedule\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">pixafy_subscription_order_schedule</argument>
+            <argument name="resourceModel" xsi:type="string">Pixafy\Subscription\Model\ResourceModel\SubscriptionOrderSchedule</argument>
+        </arguments>
+    </virtualType>
+    <!--   End  Data source prepared for order schedule grid-->
+
+    <!--     Data source prepared for order schedule grid-->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="pixafy_subscription_staging_listing_data_source" xsi:type="string">Pixafy\Subscription\Model\ResourceModel\SubscriptionStaging\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Pixafy\Subscription\Model\ResourceModel\SubscriptionStaging\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">pixafy_subscription_staging</argument>
+            <argument name="resourceModel" xsi:type="string">Pixafy\Subscription\Model\ResourceModel\SubscriptionStaging</argument>
+        </arguments>
+    </virtualType>
+    <!--   End  Data source prepared for order schedule grid-->
+
+    <preference for="Pixafy\Subscription\Api\SubscriptionRepositoryInterface" type="Pixafy\Subscription\Model\SubscriptionRepository"/>
+    <preference for="Pixafy\Subscription\Api\Data\SubscriptionInterface" type="Pixafy\Subscription\Model\Subscription"/>
+    <preference for="Pixafy\Subscription\Api\Data\SubscriptionSearchResultsInterface" type="Pixafy\Subscription\Model\SubscriptionSearchResults"/>
+    <preference for="Pixafy\Subscription\Api\SubscriptionItemRepositoryInterface" type="Pixafy\Subscription\Model\SubscriptionItemRepository"/>
+    <preference for="Pixafy\Subscription\Api\Data\SubscriptionItemInterface" type="Pixafy\Subscription\Model\SubscriptionItem"/>
+    <preference for="Pixafy\Subscription\Api\Data\SubscriptionSearchResultsItemsInterface" type="Pixafy\Subscription\Model\SubscriptionSearchResultsItems"/>
+    <preference for="Pixafy\Subscription\Api\SubscriptionOrderScheduleRepositoryInterface" type="Pixafy\Subscription\Model\SubscriptionOrderScheduleRepository"/>
+    <preference for="Pixafy\Subscription\Api\Data\SubscriptionOrderScheduleInterface" type="Pixafy\Subscription\Model\SubscriptionOrderSchedule"/>
+    <preference for="Pixafy\Subscription\Api\Data\SubscriptionSearchResultsOrderScheduleInterface" type="Pixafy\Subscription\Model\SubscriptionSearchResultsOrderSchedule"/>
+    <preference for="Pixafy\Subscription\Api\SubscriptionStagingRepositoryInterface" type="Pixafy\Subscription\Model\SubscriptionStagingRepository"/>
+    <preference for="Pixafy\Subscription\Api\Data\SubscriptionStagingInterface" type="Pixafy\Subscription\Model\SubscriptionStaging"/>
+    <preference for="Pixafy\Subscription\Api\Data\SubscriptionSearchResultsStagingInterface" type="Pixafy\Subscription\Model\SubscriptionSearchResultsStaging"/>
+    <preference for="Pixafy\Subscription\Api\SubscriptionStagingDetailsRepositoryInterface" type="Pixafy\Subscription\Model\SubscriptionStagingDetailsRepository"/>
+    <preference for="Pixafy\Subscription\Api\Data\SubscriptionStagingDetailsInterface" type="Pixafy\Subscription\Model\SubscriptionStagingDetails"/>
+    <preference for="Pixafy\Subscription\Api\Data\SubscriptionSearchResultsStagingDetailsInterface" type="Pixafy\Subscription\Model\SubscriptionSearchResultsStagingDetails"/>
+</config>

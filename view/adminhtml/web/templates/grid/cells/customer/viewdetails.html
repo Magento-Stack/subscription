@@ -1,0 +1,47 @@
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #D6EEEE;
+        }
+    </style>
+</head>
+<body>
+
+<div class="modal-body">
+    <% if (stagingDetails.length > 0) { %>
+    <table>
+        <tr>
+            <th>Field Name</th>
+            <th>Old Value</th>
+            <th>New Value</th>
+            <th>Notes</th>
+        </tr>
+        <% stagingDetails.forEach(function(detail) { %>
+        <tr>
+            <td><%= detail.field_name %></td>
+            <td><%= detail.old_value %></td>
+            <td><%= detail.new_value %></td>
+            <td><%= detail.notes %></td>
+        </tr>
+        <% }); %>
+    </table>
+    <%} else { %>
+    <p> No Record Found </p>
+    <% } %>
+</div>
+<div class="modal-footer">
+    <span class="error"></span>
+    <span class="clear"></span>
+</div>
+</body>
+

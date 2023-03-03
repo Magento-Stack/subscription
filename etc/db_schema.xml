@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Pixafy_Subscription extension
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category  Pixafy
+ * @package   Pixafy_Subscription
+ * @copyright Copyright (c) 2022
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="quote" resource="sales" engine="innodb" comment="Quote">
+        <column xsi:type="text" name="subscription_interval_type" nullable="true" comment="Subscription Interval Type"/>
+        <column xsi:type="int" name="subscription_interval_number" nullable="true" comment="Subscription Interval Number"/>
+        <column xsi:type="varchar" name="subscription_interval_label" nullable="true" comment="Subscription Interval Label"/>
+        <column xsi:type="text" name="notes" nullable="true" comment="Notes"/>
+    </table>
+
+    <table name="sales_order">
+        <column xsi:type="text" name="notes" nullable="true" comment="Notes"/>
+    </table>
+
+    <table name="pixafy_subscription" resource="default" engine="innodb" comment="Pixafy Subscription">
+        <column xsi:type="smallint" name="subscription_id" padding="6" unsigned="false" nullable="false" identity="true" comment="Subscription ID"/>
+        <column xsi:type="smallint" name="customer_id" padding="6" unsigned="false" nullable="false"  comment="Customer ID"/>
+        <column xsi:type="varchar" name="increment_id" nullable="false"  comment="Increment ID"/>
+        <column xsi:type="text" name="name" nullable="false"  comment="Name"/>
+        <column xsi:type="int" name="bpc_num" nullable="false"  comment="BPC Number"/>
+        <column xsi:type="varchar" name="bpc_name" nullable="false"  comment="BPC Name"/>
+        <column xsi:type="timestamp" name="date_created" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column xsi:type="int" name="enable" nullable="false"  comment="Enable"/>
+        <column xsi:type="int" name="schedule_id" nullable="false"  comment="Schedule ID"/>
+        <column xsi:type="varchar" name="subscription_interval_type" nullable="false"
+                comment="Subscription Interval Type"/>
+        <column xsi:type="int" name="subscription_interval_number" nullable="false"
+                comment="Subscription Interval Number"/>
+        <column xsi:type="varchar" name="subscription_interval_label" nullable="false"
+                comment="Subscription Interval Label"/>
+        <column xsi:type="varchar" name="ponumber" nullable="false"  comment="PO Number"/>
+        <column xsi:type="varchar" name="unique_id" nullable="false"  comment="Unique ID"/>
+        <column xsi:type="date" name="next_ship_date" comment="Next Ship Date"/>
+        <column xsi:type="text" name="notes" nullable="false"  comment="Notes"/>
+        <column xsi:type="float" name="total_cost" nullable="false"  comment="Total Cost"/>
+        <column xsi:type="float" name="disable_confirmation" nullable="false"
+                comment="Disable Confirmation"/>
+        <column xsi:type="boolean" name="x3_order_rebuild_flag" nullable="false"
+                comment="X3 Order Rebuild Flag"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="subscription_id"/>
+        </constraint>
+    </table>
+
+    <table name="pixafy_subscription_item" resource="default" engine="innodb" comment="Pixafy Subscription Item">
+        <column xsi:type="smallint" name="id" padding="6" unsigned="false" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="smallint" name="subscription_id"  unsigned="false" nullable="false" comment="Subscription ID"/>
+        <column xsi:type="smallint" name="product_id"  unsigned="false" nullable="false" comment="Subscription ID"/>
+        <column xsi:type="text" name="itmref"   nullable="false"  comment="ITMREF"/>
+        <column xsi:type="decimal" name="pri"  unsigned="false" nullable="false"  comment="PRI"/>
+        <column xsi:type="int" name="minqty"  unsigned="false" nullable="false"  comment="Min Qty"/>
+        <column xsi:type="int" name="maxqty" unsigned="false" nullable="false"  comment="Max Qty"/>
+        <column xsi:type="text" name="itmdesc"  nullable="false"  comment="ITMDESC"/>
+        <column xsi:type="int" name="qty"  unsigned="false" nullable="false"  comment="Qty"/>
+        <column xsi:type="int" name="ship_site"  unsigned="false" nullable="false"  comment="Ship Site"/>
+        <column xsi:type="int" name="itmstd"  unsigned="false" nullable="false"  comment="ITMSTD"/>
+        <column xsi:type="text" name="tsicod" nullable="false"  comment="TSICOD"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="PIX_SUB_ITM" table="pixafy_subscription_item" column="subscription_id"
+                    referenceTable="pixafy_subscription" referenceColumn="subscription_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="pixafy_subscription_staging" resource="default" engine="innodb" comment="Pixafy Subscription Staging">
+        <column xsi:type="smallint" name="subscription_staging_id" padding="6" identity="true" unsigned="false" nullable="false"  comment="Subscription Staging ID"/>
+        <column xsi:type="smallint" name="subscription_id" padding="6" unsigned="false" nullable="false"  comment="Subscription ID"/>
+        <column xsi:type="timestamp" name="date_created" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column xsi:type="date" name="date_scheduled" comment="Date Schedule"/>
+        <column xsi:type="boolean" name="is_approved" nullable="false" comment="Is Approved"/>
+        <column xsi:type="boolean" name="is_executed" nullable="false" comment="Is Executed"/>
+        <column xsi:type="smallint" name="user_id"  unsigned="false" nullable="false" comment="User ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="subscription_staging_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="PIX_SUB_STG" table="pixafy_subscription_staging" column="subscription_id"
+                    referenceTable="pixafy_subscription" referenceColumn="subscription_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="pixafy_subscription_staging_details" resource="default" engine="innodb" comment="Pixafy Subscription Staging Details">
+        <column xsi:type="smallint" name="subscription_staging_details_id" padding="6" identity="true" unsigned="false" nullable="false"  comment="Subscription Staging Details ID"/>
+        <column xsi:type="smallint" name="subscription_staging_id" padding="6" unsigned="false" nullable="false"  comment="Subscription Staging ID"/>
+        <column xsi:type="smallint" name="product_id"  unsigned="false" nullable="false" comment="Subscription ID"/>
+        <column xsi:type="text" name="field_name" nullable="false"  comment="Field Name"/>
+        <column xsi:type="text" name="old_value" nullable="false"  comment="Old Value"/>
+        <column xsi:type="text" name="new_value" nullable="false"  comment="New Value"/>
+        <column xsi:type="text" name="notes" nullable="false"  comment="Notes"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="subscription_staging_details_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="PIX_SUB_STG" table="pixafy_subscription_staging_details" column="subscription_staging_id"
+                    referenceTable="pixafy_subscription_staging" referenceColumn="subscription_staging_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="pixafy_subscription_order_schedule" resource="default" engine="innodb" comment="Pixafy Subscription Order Schedule">
+        <column xsi:type="smallint" name="schedule_id" padding="6" unsigned="false" nullable="false" identity="true" comment="Schedule ID"/>
+        <column xsi:type="smallint" name="subscription_id" padding="6" unsigned="false" nullable="false"  comment="Subscription ID"/>
+        <column xsi:type="boolean" name="is_valid" nullable="false" comment="Is Valid"/>
+        <column xsi:type="boolean" name="is_posted" nullable="false" comment="Is Posted"/>
+        <column xsi:type="date" name="expected_delivery_date" comment="Expected Delivery Date"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Update Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="schedule_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="PIX_SUB_STG" table="pixafy_subscription_order_schedule" column="subscription_id"
+                    referenceTable="pixafy_subscription" referenceColumn="subscription_id" onDelete="CASCADE"/>
+    </table>
+</schema>

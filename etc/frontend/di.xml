@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- pass custom variables on checkout page -->
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="checkout_subscription_radio_buttons" xsi:type="object">
+                    Pixafy\Subscription\Model\CustomConfigProvider
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--add radio buttons on checkout-->
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="checkout_radio_buttons" type="Pixafy\Subscription\Plugin\Checkout\Model\LayoutProcessorPlugin" sortOrder="150"/>
+    </type>
+</config>

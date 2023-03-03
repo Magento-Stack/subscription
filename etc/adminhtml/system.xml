@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Pixafy_Subscription extension
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category  Pixafy
+ * @package   Pixafy_Subscription
+ * @copyright Copyright (c) 2022
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="pix_subscription" translate="label" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Subscription Settings</label>
+            <tab>pixafy</tab>
+            <resource>Pixafy_Subscription::pix_subscription_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1">
+                <label>General</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Subscriptions</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Disable/Enable subscription options on a checkout/cart</comment>
+                </field>
+                <field id="modification_cron" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Modification Cron Schedule</label>
+                    <source_model>Pixafy\Subscription\Model\Config\Source\Frequency</source_model>
+                    <backend_model>Pixafy\Subscription\Model\Config\ModificationCronConfig</backend_model>
+                </field>
+                <field id="modification_cronTime" translate="label comment" sortOrder="30" type="time" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Modification Cron Time</label>
+                    <comment>Format Hour:Min:Sec. Seconds will be ignored by Cron (00 means * i.e. every minute or hour)</comment>
+                </field>
+                <field id="x3_period" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>X3 Cisibility Period</label>
+                    <comment>Period in X3 covered with orders. (Default is 120 Days)</comment>
+                    <validate>validate-digits</validate>
+                </field>
+                <field id="magento_period" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Magento Visibility Period</label>
+                    <comment>Period in Magento covered with orders. (Default is 35 Days)</comment>
+                    <validate>validate-digits</validate>
+                </field>
+                <field id="x3_cron" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>X3 Visibility Cron Schedule</label>
+                    <source_model>Pixafy\Subscription\Model\Config\Source\Frequency</source_model>
+                    <backend_model>Pixafy\Subscription\Model\Config\X3VisibilityCronConfig</backend_model>
+                </field>
+                <field id="x3Visibility_cronTime" translate="label comment" sortOrder="70" type="time" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>X3 Visibility Cron Time</label>
+                    <comment>Format Hour:Min:Sec. Seconds will be ignored by Cron (00 means * i.e. every minute or hour)</comment>
+                </field>
+                <field id="order_lock_period" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Order Lock Period</label>
+                    <comment>Number of days before expected delivery date, when subscription order become locked for modifications</comment>
+                    <validate>validate-digits</validate>
+                </field>
+                <field id="order_lock_msg" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Order Lock Message</label>
+                </field>
+            </group>
+            <group id="subscription_periods" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Subscription periods</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Allowed on the Storefront</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Allow/Disallow subscription periods on the storefront.</comment>
+                </field>
+                <field id="intervals" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Subscription Intervals</label>
+                    <frontend_model>Pixafy\Subscription\Model\Config\SubscriptionPeriods</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

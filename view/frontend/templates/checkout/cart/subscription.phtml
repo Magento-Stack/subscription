@@ -1,0 +1,70 @@
+<?php
+/** @var Subscription $block */
+use Pixafy\Subscription\Block\Checkout\Cart\Subscription;
+?>
+<?php if ($block->isVisible()): ?>
+    <div class="subscription">
+        <div>
+            <input type="radio" class="order-type" id="single" value="single" name="checkbox" <?php if ($block->isSingle()) {echo 'checked=checked';} ?>/>
+            <label for="single">Single Order</label>
+            <input type="radio" class="order-type" id="recurring" value="recurring" name="checkbox" <?php if (!$block->isSingle()) {echo 'checked=checked';} ?>/>
+            <label for="recurring">Recurring Order</label><br/>
+        </div>
+        <div id="recurring_form" class="recurring_form_cart" style="display: <?= $block->isRecurring() ?>">
+            <label for="intervals_list">
+                <legend data-bind="i18n: 'Schedule'"></legend>
+                <select required name="intervals_list" id="intervals_list" class="intervals_list_select"
+                <option value=''>Please Select</option>
+                <?php
+                foreach ($block->getSubscriptionIntervals() as $interval): ?>
+                <?php if ($interval['value'] == $block->getSelectedIntervalValue()): ?>
+                    <option value="<?= $interval['value'] ?>" selected>
+                        <?= $interval['label'] ?>
+                    </option>
+                <?php else: ?>
+                    <option value="<?= $interval['value'] ?>">
+                        <?= $interval['label'] ?>
+                    </option>
+                <?php endif; ?>
+                >
+            </label>
+            <?php endforeach; ?>
+        </div>
+
+    </div>
+<?php endif; ?>
+
+<script>
+    require(['jquery'], function ($) {
+        $(document).on('change', '.order-type', function () {
+            var type = $(this).val();
+            if (type === "recurring") {
+                document.getElementById('recurring_form').style.display = "block";
+            } else {
+                document.getElementById('recurring_form').style.display = "none";
+            }
+            $.ajax({
+                showLoader: true,
+                url: "<?= $block->getBaseUrl()?>pixafy_subscription/checkout/save",
+                data: {type: type},
+                type: "POST",
+                dataType: 'json'
+            }).done(function (data) {
+                console.log(' ');
+            });
+        });
+        $("#intervals_list").change(function () {
+            if (this.value !== '') {
+                $.ajax({
+                    showLoader: true,
+                    url: "<?= $block->getBaseUrl()?>pixafy_subscription/checkout/save",
+                    data: {type: "recurring", value: this.value},
+                    type: "POST",
+                    dataType: 'json'
+                }).done(function (data) {
+                    console.log(' ');
+                });
+            }
+        });
+    });
+</script>

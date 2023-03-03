@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/subscription/search" method="GET">
+        <service class="Pixafy\Subscription\Api\SubscriptionRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Pixafy_Subscription::management"/>
+        </resources>
+    </route>
+    <route url="/V1/subscription/:id" method="GET">
+        <service class="Pixafy\Subscription\Api\SubscriptionRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Pixafy_Subscription::management"/>
+        </resources>
+    </route>
+    <route url="/V1/subscription/" method="POST">
+        <service class="Pixafy\Subscription\Api\SubscriptionRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Pixafy_Subscription::management"/>
+        </resources>
+    </route>
+    <route url="/V1/subscription/" method="PUT">
+        <service class="Pixafy\Subscription\Api\SubscriptionRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Pixafy_Subscription::management"/>
+        </resources>
+    </route>
+</routes>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Pixafy_Subscription extension
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category  Pixafy
+ * @package   Pixafy_Subscription
+ * @copyright Copyright (c) 2022
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <pix_subscription>
+            <general>
+                <enable>0</enable>
+                <x3_period>120</x3_period>
+                <magento_period>35</magento_period>
+                <order_lock_period>10</order_lock_period>
+                <order_lock_msg>Some Message...</order_lock_msg>
+            </general>
+            <subscription_periods>
+                <enable>0</enable>
+            </subscription_periods>
+        </pix_subscription>
+    </default>
+</config>
